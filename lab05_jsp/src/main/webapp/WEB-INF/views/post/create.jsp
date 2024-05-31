@@ -35,9 +35,9 @@
 							<textarea class="form-control" rows="10" name="content"
 								placeholder="내용을 적으시오" required></textarea>
 						</div>
-						<div class="mt-2">
+						<div class="mt-2 d-none">
 							<input class="form-control" type="text" name="author"
-								placeholder="작성자" required />
+								value="${signedInUser}" required />
 						</div>
 						<div class="mt-2">
 							<input class="form-control btn btn-success" type="submit"

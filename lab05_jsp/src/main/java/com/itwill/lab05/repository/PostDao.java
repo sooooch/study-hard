@@ -149,7 +149,7 @@ public enum PostDao {
 	}
 	
 	// 업데이트(수정완료)
-	private static final String SQL_UPDATE = "update posts set title = ?,content = ?, modified_time = systimestampwhere id = ?";
+	private static final String SQL_UPDATE = "update posts set title = ?,content = ?, modified_time = systimestamp where id = ?";
 	
 	
 	public int update(Post post) {

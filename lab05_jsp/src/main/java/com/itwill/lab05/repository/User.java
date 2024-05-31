@@ -1,11 +1,11 @@
 package com.itwill.lab05.repository;
 
-import java.time.LocalDateTime;
+
 import java.util.Objects;
 
 
+//MVC 아키텍쳐에서 Model 역할 클래스. DB의 users 테이블 컬럼 구조와 같은 클래스.
 
-// Model.  users 테이블
 public class User {
 
 	private Integer id;
