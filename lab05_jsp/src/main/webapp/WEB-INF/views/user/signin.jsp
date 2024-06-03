@@ -19,6 +19,9 @@
 					<h2>로그인</h2>
 				</div>
 				<div class="card-body">
+					<c:if test="${not empty param.result && param.result eq 'f'}">
+						<div class="text-danger">아이디와 패스워드를 확인하세요.</div>
+					</c:if>
 					<c:url var="signInPage" value="/user/signin" />
 					<form method="post" action="${signInPage}">
 						<div class="mt-2">
@@ -27,6 +30,10 @@
 						<div class="mt-2">
 							<input type="password" name="password" placeholder="비밀번호" required class="form-control"/>
 						</div>
+						<div class="d-none">
+							<input name="target" value="${param.target }" readonly/>
+						</div>
+						
 						<div class="mt-2">
 							<input type="submit" value="로그인" class="form-control btn btn-outline-success"/>
 						</div>

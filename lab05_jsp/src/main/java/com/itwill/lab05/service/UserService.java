@@ -31,10 +31,7 @@ public enum UserService {
 		User dto = User.builder().userid(userid).password(password).build();	
 		User user = userDao.selectByUseridAndPassword(dto);
 		log.debug("로그인결과 = {}",user);
-		
-	
-		
-		
+			
 		return user;
 	
 	}

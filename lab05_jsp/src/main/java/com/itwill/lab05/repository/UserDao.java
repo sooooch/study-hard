@@ -75,7 +75,7 @@ public enum UserDao {
 			stmt.setString(2, user.getPassword());
 			rs = stmt.executeQuery();
 			if (rs.next()) {
-				result = fromResultSetToUser(rs);
+				result = fromResultSetToUser(rs);  //리절트셋은 셀렉트할때만
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,6 +85,36 @@ public enum UserDao {
 		}
 		return result;
 	}
+	
+	//  USERS 테이블에 POINTS 증가
+	private static final String SQL_UPDATE_POINTS ="update USERS set points = points + ? where userid =? ";
+	
+	public int updatePoints(String userid, int points) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		int result =0 ;   
+		
+		try {
+			conn = ds.getConnection();
+			stmt = conn.prepareStatement(SQL_UPDATE_POINTS);
+			stmt.setInt(1, points);
+			stmt.setString(2, userid);
+			result = stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			closeResources(conn, stmt);
+			
+		}
+		
+		return result;
+		
+	};
+	
+	
+	
+	
 	
 	private User fromResultSetToUser(ResultSet rs) throws SQLException {
 		int id = rs.getInt("id");
