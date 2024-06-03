@@ -24,6 +24,15 @@ public enum UserService {
 		return result;
 	}
 	
+	// 내정보 가지고오기
+	public User read(String userid) {
+		log.debug(userid);
+		User user = userDao.selectByUserid(userid);
+		return user;
+	}
+	
+	
+	
 	// 로그인에 필요한 메서드 userDao.selectByUseridAndPassword() 호출
 	public User signIn(String userid, String password) {
 		log.debug("signIn(userId={},password={})",userid,password);

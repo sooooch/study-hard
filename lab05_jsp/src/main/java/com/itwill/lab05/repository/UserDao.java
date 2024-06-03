@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,7 +102,6 @@ public enum UserDao {
 			stmt.setInt(1, points);
 			stmt.setString(2, userid);
 			result = stmt.executeUpdate();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -112,8 +113,38 @@ public enum UserDao {
 		
 	};
 	
+	// TODO:USERS의 정보를 가지고오기
+	private static final String SQL_SELECT_USER = "select * from users where  userid=?";
 	
+	public User selectByUserid(String userid) {
+	    log.debug("selectByUserid({})", userid);
+	    log.debug(SQL_SELECT_USER);
+
+	    User result = null; 
+	    Connection conn = null;
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+
+	    try {
+	        conn = ds.getConnection();
+	        stmt = conn.prepareStatement(SQL_SELECT_USER);
+	        stmt.setString(1, userid);
+	        rs = stmt.executeQuery();
+	        if (rs.next()) {
+	        	result = fromResultSetToUser(rs);
+			}
+
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResources(conn, stmt, rs);
+		}
+		
+		return result;
 	
+	}
 	
 	
 	private User fromResultSetToUser(ResultSet rs) throws SQLException {

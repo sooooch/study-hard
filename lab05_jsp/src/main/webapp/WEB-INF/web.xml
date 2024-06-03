@@ -23,6 +23,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>authenticationFilter</filter-name>
+		<url-pattern>/user/udetails</url-pattern>
 		<url-pattern>/post/create</url-pattern>
 		<url-pattern>/post/details</url-pattern>
 		<url-pattern>/post/modify</url-pattern>
