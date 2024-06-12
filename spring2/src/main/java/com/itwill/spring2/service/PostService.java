@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.spring2.dto.PostCreateDto;
 import com.itwill.spring2.dto.PostListDto;
+import com.itwill.spring2.dto.PostSearchDto;
+import com.itwill.spring2.dto.PostUpdateDto;
 import com.itwill.spring2.repository.Post;
 import com.itwill.spring2.repository.PostDao;
 
@@ -46,6 +49,41 @@ public class PostService {
 		
 		Post dlist = postDao.selectById(id);
 		return dlist;
+	}
+	
+	
+	public int create(PostCreateDto dto) {
+		
+		int newlist = postDao.insertPost(dto.toEntity());
+		return newlist;
+	}
+	
+	public int delete(int id) {
+		log.debug("delete(id={})",id);
+		
+		// 리포지토리 컴포넌트의 메서드를 호출해서 delete 쿼리를 실행
+		
+		int result = postDao.deletePost(id);
+		
+		log.debug("delete 결과 = {}",result);
+		
+		return result;
+		
+	}
+	
+	public int updete(PostUpdateDto dto) {
+		int result = postDao.updatePost(dto.toEntity());
+		return result;
+		
+		
+	}
+	
+	public List<PostListDto> search(PostSearchDto dto) {
+		List<Post> list = postDao.search(dto);
+		return list.stream()
+				.map(PostListDto::fromEntity)  // map((x) -> PostListDto.fromEntity(x))
+				.toList();
+		
 	}
 
 }

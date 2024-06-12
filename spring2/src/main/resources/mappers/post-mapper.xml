@@ -28,6 +28,29 @@
   	update posts set title = #{title}, content = #{content}, modified_time = systimestamp where id = #{id}
   </update>
   
+  <!--  posts 테이블에서 제목/내용/작성자로 검색 -->
+  <select id="search" resultType="Post">
+  	<bind name="searchKeyword" value="'%' + keyword + '%'" />
+  		select * from posts
+  		<where>
+  		<choose>
+  			<when test='category.equals("t")'> upper(title) like upper(#{searchKeyword})</when>
+  			<when test='category.equals("c")'> upper(content) like upper(#{searchKeyword})</when>
+  			<when test='category.equals("tc")'>upper(content) like upper(#{searchKeyword})
+  												or
+  												upper(title) like upper(#{searchKeyword})</when>
+  			<when test='category.equals("a")'>upper(author) like upper(#{searchKeyword})</when>
+  		</choose>
+  		</where>
+  		order by id desc
+  </select>
   
+  <!-- 위에가 이거임 
+  		select * from posts
+  		where upper(title) like upper(%keyword값%)
+  		order by id desc
+  		
+  		타이틀에 keyword값이 있는걸 셀렉트
+   -->
   
   </mapper>

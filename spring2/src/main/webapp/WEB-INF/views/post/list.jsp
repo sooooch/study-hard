@@ -18,8 +18,26 @@
 
 		<main>
 			<div class="card mt-2">
-				<div class="card-header text-center">
-					<h2>POSTS</h2>
+				<div class="card-header ">
+					<c:url var="postSearchPage" value="/post/search"/>
+					<form method="get" action="${postSearchPage}">
+					<div class="row">
+						<div class="col-2"> 
+						<select class="form-control" name="category">
+						<option  value="t">제목</option>
+						<option  value="c">내용</option>
+						<option  value="tc">제목+내용</option>
+						<option  value="a">작성자</option>
+						</select>
+						</div>
+						<div class="col-7">
+							<input type="text" class="form-control" name="keyword" placeholder="검색어 입력" required/>
+						</div>
+						<div class="col-1">
+							<input type="submit" class="form-control btn btn-secondary" value="검색"/>
+						</div>
+					</div>	
+					</form>
 				</div>
 				<div class="card-body">
 					<table class="table table-striped table-hover">
@@ -35,14 +53,9 @@
 							<c:forEach items="${posts}" var="p">
 								<tr>
 									<td>${p.id}</td>
-									<td>
-										<c:url var="postDetailsPage" value="/post/details">
+									<td><c:url var="postDetailsPage" value="/post/details">
 											<c:param name="id" value="${p.id}" />
-										</c:url> 
-											<a href="${postDetailsPage}">
-												${p.title }
-											</a>
-									</td>
+										</c:url> <a href="${postDetailsPage}"> ${p.title } </a></td>
 									<td>${p.author }</td>
 									<td>${p.modifiedTime }</td>
 								</tr>
