@@ -2,26 +2,27 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.itwill.spring2.repository.UserDao" >
-  
-  <select id="logIn" resultSets="Post">
-  	select * from users where userid = #{userid} and password = #{password}
-  </select>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-    </mapper>
+<mapper namespace="com.itwill.spring2.repository.UserDao">
+
+	<select id="logIn" resultSets="Post">
+		select * from users where userid = #{userid} and password = #{password}
+	</select>
+
+
+
+	<insert id="insertUser">
+		insert into users (userid, password, email)
+		values (#{userid}, #{password}, #{email})
+	</insert>
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

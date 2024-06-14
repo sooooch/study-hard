@@ -11,14 +11,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor // final 필드들을 초기화하는 생성자
-@Slf4j
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
 	
-	@GetMapping("/signin")
-public void signin(User user) {
+	@GetMapping("/signup")
+public void signup(User user) {
 	
 		
 		

@@ -84,8 +84,9 @@ public class PostController {
 	
 	@PostMapping("/update")
 	public String update(PostUpdateDto dto) {
+//		Post post = dto.toEntity();
+//	    postService.update(post);
 		postService.updete(dto);
-		
 		return "redirect:/post/details?id=" + dto.getId();
 	}
 	
