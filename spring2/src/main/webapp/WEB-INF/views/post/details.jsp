@@ -64,7 +64,43 @@
 
 			</div>
 		</main>
+
+		<section>
+			<div class="mt-2 card">
+				<div class="card-header d-inline-flex gap-1">
+					<!--  댓글 접기/펼치기 기능 버튼 -->
+					<button class="btn btn-secondary" id="btnToggleComment">댓글 보기</button>
+				</div>
+
+				<!-- 댓글 토글 버튼에 의해서 접기/펼치기를 할 영역 -->
+				<div class="card-body collapse" id="collapseComments">
+
+					<div class="mt-2 card card-body">
+						<div class="mt-2 row">
+							<div class="col-10">
+								<textarea rows="3" class="form-control" id="ctext" placeholder="댓글 내용"></textarea>
+								<input id="username" class="form-control mt-2 w-25"placeholder="댓글 작성자" />
+							</div>
+							<div class="col-2">
+								<button class="btn btn-outline-success mt-5" id="btnRegisterComment">등록</button>
+							</div>
+
+						</div>
+					</div>
+					<div class="mt-4" id="comments"></div>
+
+				</div>
+			</div>
+		</section>
+
 	</div>
+	<!-- 부트스트랩 라이브러리 -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<!-- axios 라이브러리 -->
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<!--  우리가 만든거 -->
+	<c:url var="commentsJS" value="/js/comments.js" />
+	<script src="${commentsJS}"></script>
+	
 </body>
 </html>
