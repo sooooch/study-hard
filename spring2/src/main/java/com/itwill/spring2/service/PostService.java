@@ -8,6 +8,7 @@ import com.itwill.spring2.dto.PostCreateDto;
 import com.itwill.spring2.dto.PostListDto;
 import com.itwill.spring2.dto.PostSearchDto;
 import com.itwill.spring2.dto.PostUpdateDto;
+import com.itwill.spring2.repository.CommentDao;
 import com.itwill.spring2.repository.Post;
 import com.itwill.spring2.repository.PostDao;
 
@@ -29,6 +30,7 @@ public class PostService {
 	// 생성자에 의한 의존성 주입:
 	// (1) final 필드 선언. (2) final 필드를 초기화하는 생성자 작성.
 	private final PostDao postDao;
+	private final CommentDao commentDao;
 
 	public List<PostListDto> read() {
 		log.debug("read()");
@@ -60,16 +62,17 @@ public class PostService {
 	
 	public int delete(int id) {
 		log.debug("delete(id={})",id);
-		
+		// 게시물 지우기전에 제약조건 땜시 참조하고있는 댓글테이블의 postId를 먼저 지워야함
+		commentDao.deleteByPostId(id);
 		// 리포지토리 컴포넌트의 메서드를 호출해서 delete 쿼리를 실행
-		
 		int result = postDao.deletePost(id);
 		
 		log.debug("delete 결과 = {}",result);
 		
-		return result;
-		
+		return result;		
 	}
+	
+
 	
 	public int updete(PostUpdateDto dto) {
 		int result = postDao.updatePost(dto.toEntity());

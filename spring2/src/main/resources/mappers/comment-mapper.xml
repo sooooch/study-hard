@@ -33,4 +33,8 @@
   select count(*)  from comments where post_id = #{postId}
   </select>
   
+  <select id="selectById" resultType="Comment">
+  select * from comments where id = #{id}
+  </select>
+  
   </mapper>

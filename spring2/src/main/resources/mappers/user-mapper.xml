@@ -8,6 +8,9 @@
 		select * from users where userid = #{userid} and password = #{password}
 	</select>
 
+	<select id="selectByUserid" resultType="User">
+		select * from users where userid = #{userid}
+	</select>
 
 
 	<insert id="insertUser">
